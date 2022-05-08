@@ -1,7 +1,7 @@
 
 # Image Processing API
 
-A REST API that serves images with on-demand sizes with caching functionality.
+A REST API that serve and process images with on-demand sizes with caching functionality.
 
 ## Tech-stack
 
