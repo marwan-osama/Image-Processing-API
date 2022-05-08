@@ -4,8 +4,8 @@ import app from "../../../index";
 
 const server = supertest(app);
 
-describe("Image transform function testing", () => {
-  it("Expect transformation to throw a specific error as input image is missing", async () => {
+describe("Image transform endpoint testing", () => {
+  it("Expect endpoint to throw a specific error as input image is missing", async () => {
     await server
       .get("/api/images?fileName=missing&width=100&height=100")
       .expect((response) => {
@@ -13,7 +13,7 @@ describe("Image transform function testing", () => {
       });
   });
 
-  it("Expect transformation to throw a specific error as image size is invalid", async () => {
+  it("Expect endpoint to throw a specific error as image size is invalid", async () => {
     await server
       .get("/api/images?fileName=fjord&width=aaa&height=bbb")
       .expect((response) => {

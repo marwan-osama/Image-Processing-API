@@ -88,7 +88,10 @@ imgRoutes.get("/images", function (req, res) { return __awaiter(void 0, void 0, 
                 res.send("Image not found!");
                 return [3 /*break*/, 7];
             case 3:
-                if (!(isNaN(imgHeight) || isNaN(imgWidth))) return [3 /*break*/, 4];
+                if (!(isNaN(imgHeight) ||
+                    isNaN(imgWidth) ||
+                    imgWidth <= 0 ||
+                    imgHeight <= 0)) return [3 /*break*/, 4];
                 /* checking if size isn't valid */
                 res.send("Invalid image size!");
                 return [3 /*break*/, 7];

@@ -39,33 +39,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var supertest_1 = __importDefault(require("supertest"));
-var assert_1 = __importDefault(require("assert"));
-var index_1 = __importDefault(require("../../../index"));
-var server = (0, supertest_1.default)(index_1.default);
-describe("Image transform endpoint testing", function () {
-    it("Expect endpoint to throw a specific error as input image is missing", function () { return __awaiter(void 0, void 0, void 0, function () {
+var changeSize_1 = __importDefault(require("../../utilities/changeSize"));
+var path_1 = __importDefault(require("path"));
+describe("Testing image tranformation function", function () {
+    it("Expected to reject with Input file is missing error", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var returned;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, server
-                        .get("/api/images?fileName=missing&width=100&height=100")
-                        .expect(function (response) {
-                        assert_1.default.ok(response.text.includes("Image not found!"));
-                    })];
+                case 0:
+                    returned = (0, changeSize_1.default)(path_1.default.resolve("assets/full/fjord123.jpg"), path_1.default.resolve("assets/thumb/fjord123_100x100.jpg"), 100, 100);
+                    return [4 /*yield*/, expectAsync(returned).toBeRejectedWithError(/Input file is missing/)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
             }
         });
     }); });
-    it("Expect endpoint to throw a specific error as image size is invalid", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("Expected to resolve without errors", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var returned;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, server
-                        .get("/api/images?fileName=fjord&width=aaa&height=bbb")
-                        .expect(function (response) {
-                        assert_1.default.ok(response.text.includes("Invalid image size!"));
-                    })];
+                case 0:
+                    returned = (0, changeSize_1.default)(path_1.default.resolve("assets/full/fjord.jpg"), path_1.default.resolve("assets/thumb/fjord_100x100.jpg"), 100, 100);
+                    return [4 /*yield*/, expectAsync(returned).toBeResolved()];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];

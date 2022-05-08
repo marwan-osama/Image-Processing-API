@@ -19,7 +19,12 @@ imgRoutes.get("/images", async (req, res) => {
   if (fulls.indexOf(`${imgName}.jpg`) === -1) {
     /* checking if image doesn't exists */
     res.send("Image not found!");
-  } else if (isNaN(imgHeight) || isNaN(imgWidth)) {
+  } else if (
+    isNaN(imgHeight) ||
+    isNaN(imgWidth) ||
+    imgWidth <= 0 ||
+    imgHeight <= 0
+  ) {
     /* checking if size isn't valid */
     res.send("Invalid image size!");
   } else if (thumbs.indexOf(basename(thumbImgPath)) === -1) {

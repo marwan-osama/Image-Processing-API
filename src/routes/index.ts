@@ -1,10 +1,10 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import imgRoutes from "./api/images";
 
 const routes = Router();
 routes.use(imgRoutes);
 
-routes.get("/", (req, res) => {
+routes.get("/", (req: Request, res: Response): void => {
   res.send(`
     <p>Main route for image processing API
     use the url below to get images</p>
