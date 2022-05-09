@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { promises as fsPromises } from "fs";
 import path, { basename } from "path";
 import changeSize from "../../utilities/changeSize";
 
 const imgRoutes = Router();
 
-imgRoutes.get("/images", async (req, res) => {
+imgRoutes.get("/images", async (req: Request, res: Response): Promise<void> => {
   const imgName = req.query.fileName;
   const imgWidth = parseInt(req.query.width as unknown as string);
   const imgHeight = parseInt(req.query.height as unknown as string);
